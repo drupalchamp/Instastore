@@ -11,6 +11,9 @@ class API {
   static final REGISTER_URL = BASE_URL + "/user/register?_format=json";
   static final PRODUCT_CATEGORY_URL = BASE_URL + "/api/product-categories?_format=json";
   static final CATEGORY_PRODUCTS_URL = BASE_URL + "/api/category/%/products?_format=json";
+  static final CART_URL = BASE_URL + "/cart?_format=json";
+  static final ADD_TO_CART_URL = BASE_URL + "/cart/add?_format=json";
+  static final PRODUCT_DETAIL_URL = BASE_URL + "/api/product/%?_format=json";
 }
 
 class APIServices {
@@ -41,7 +44,7 @@ class APIServices {
         debugPrint('body ${body}');
         // TODO: handle value
         Map<String, dynamic> loginResponseJson = json.decode(response.body);
-        debugPrint('loginResponseJson ${loginResponseJson}');
+        debugPrint('loginResponseJson $loginResponseJson');
         if (response.statusCode == 200) {
           return loginResponseJson;
         } else {
@@ -61,7 +64,7 @@ class APIServices {
         debugPrint('error ${error.toString()}');
       });
 
-  // User Login API
+  // User Get Category API
   static Future<dynamic> getProductCategory() async =>
       await http.get(API.PRODUCT_CATEGORY_URL, headers: {
         "Content-Type": "application/json",
@@ -88,7 +91,7 @@ class APIServices {
         debugPrint('error ${error.toString()}');
       });
 
-  // User Login API
+  // User Product according to Category API
   static Future<dynamic> getCategoryProducts(categoryId) async =>
       await http.get(API.CATEGORY_PRODUCTS_URL.replaceAll('%', categoryId), headers: {
         "Content-Type": "application/json",
@@ -99,6 +102,26 @@ class APIServices {
         //debugPrint('categoryProductsJson ${categoryProductsJson}');
         if (response.statusCode == 200) {
           return categoryProductsJson;
+        } else {
+          throw Error();
+        }
+      }).catchError((error) {
+        // TODO: handle value
+        debugPrint('error ${error.toString()}');
+      });
+
+  // User Product Details
+  static Future<dynamic> getProductDetail(productId) async =>
+      await http.get(API.PRODUCT_DETAIL_URL.replaceAll('%', productId), headers: {
+        "Content-Type": "application/json",
+      }).then((response) {
+        // TODO: handle value
+        //debugPrint('productDetailJson ${response.body}');
+
+        List<dynamic> productDetailJson = json.decode(response.body);
+        debugPrint('productDetailJson $productDetailJson');
+        if (response.statusCode == 200) {
+          return productDetailJson;
         } else {
           throw Error();
         }

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:instastore/pages/paymentPage.dart';
-import 'package:flutter/services.dart';
-import 'package:instastore/pages/codPage.dart';
+import 'package:instastore/services/makePayment.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class PaypalPaymentPage extends StatefulWidget {
@@ -13,82 +11,6 @@ class PaypalPaymentPage extends StatefulWidget {
 
 class _PaypalPaymentPageState extends State<PaypalPaymentPage> {
 
-  Widget _cardPayment() {
-    return Container(
-        width: 110,
-        height: 100,
-        padding: const EdgeInsets.all(3.0),
-        decoration: BoxDecoration(
-            border: Border.all(width: 3, color: Colors.grey)),
-        child: InkWell(
-          onTap: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => PaymentPage()));
-            //_onButtonPressed(context);
-          },
-          child: Container(
-            child: ClipRRect(
-              child: Image.asset('assets/card.jpg'),
-            ),
-          ),
-        ));
-  }
-
-  Widget _paypalPayment() {
-    return Container(
-        width: 110,
-        height: 100,
-        padding: const EdgeInsets.all(3.0),
-        decoration:
-            BoxDecoration(border: Border.all(width: 3, color: Colors.greenAccent)),
-        child: InkWell(
-          onTap: () {
-             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => PaypalPaymentPage()));
-            //_onButtonPressed(context);
-          },
-          child: Container(
-            child: ClipRRect(
-              child: Image.asset('assets/paypal.png'),
-            ),
-          ),
-        ));
-  }
-
-  Widget _codPayment() {
-    return Container(
-        width: 110,
-        height: 100,
-        padding: const EdgeInsets.all(3.0),
-        decoration:
-            BoxDecoration(border: Border.all(width: 3, color: Colors.grey)),
-        child: InkWell(
-          onTap: () {
-             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => CODPaymentPage()));
-           // _onButtonPressed(context);
-          },
-          child: Container(
-            child: ClipRRect(
-              child: Image.asset('assets/cod.jpg'),
-            ),
-          ),
-        ));
-  }
-
-  //Product Name and Price in same row
-  Widget _paymentMethod() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: <Widget>[
-        _cardPayment(),
-        _paypalPayment(),
-        _codPayment(),
-      ],
-    );
-  }
-
-
   Widget _totalAmount() {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 10),
@@ -99,7 +21,7 @@ class _PaypalPaymentPageState extends State<PaypalPaymentPage> {
         alignment: Alignment.topLeft,
         child: Text(
           'TOTAL AMOUNT:',
-          style: TextStyle(fontSize: 20, color: Colors.black54),
+          style: TextStyle(fontSize: 12, color: Colors.black54),
         ),
       ),
     );
@@ -115,7 +37,7 @@ class _PaypalPaymentPageState extends State<PaypalPaymentPage> {
         alignment: Alignment.center,
         child: Text(
           '\$265.90',
-          style: TextStyle(fontSize: 20, color: Colors.black),
+          style: TextStyle(fontSize: 13, color: Colors.black),
         ),
       ),
     );
@@ -124,7 +46,7 @@ class _PaypalPaymentPageState extends State<PaypalPaymentPage> {
   //Product Name and Price in same row
   Widget _grossAmount() {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      //mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
         _totalAmount(),
         _totalPrice(),
@@ -146,16 +68,20 @@ class _PaypalPaymentPageState extends State<PaypalPaymentPage> {
 
     return Container(
         child: InkWell(
-          onTap: () => _launchURL(),
+          //onTap: () => _launchURL(),
+          onTap: () => {
+          Navigator.push(
+          context, MaterialPageRoute(builder: (context) => makePayment()))
+          },
           child: Container(
-            padding: EdgeInsets.all(25.0),
+            padding: EdgeInsets.all(15.0),
             alignment: Alignment.center,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(5)),
                 color: Color.fromRGBO(0, 31, 107, 1)),
             child: Text(
               'PAYPAL CHECKOUT',
-              style: TextStyle(fontSize: 25, color: Colors.white),
+              style: TextStyle(fontSize: 12, color: Colors.white),
             ),
           ),
         ));
@@ -164,18 +90,19 @@ class _PaypalPaymentPageState extends State<PaypalPaymentPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
+        /*appBar: AppBar(
           title: Text('Payment'),
-          backgroundColor: Colors.green,
+          backgroundColor: Colors.blue,
           brightness: Brightness.dark,
-        ),
+        ),*/
         body: SingleChildScrollView(
           padding: EdgeInsets.all(20),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              _paymentMethod(),SizedBox(
-                height: 200,
+              //_paymentMethod(),
+              SizedBox(
+                height: 20,
               ),
               _grossAmount(),
               SizedBox(

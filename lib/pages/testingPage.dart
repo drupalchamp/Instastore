@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class TestingPage extends StatefulWidget {
   TestingPage({Key key, this.title}) : super(key: key);
   final String title;
@@ -9,23 +8,27 @@ class TestingPage extends StatefulWidget {
 }
 
 class _TestingPageState extends State<TestingPage> {
-
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("assets/about.jpg"),
-            fit: BoxFit.fitWidth,
-            alignment: Alignment.topCenter,
-          ),
+
+
+    return Scaffold(
+        appBar: AppBar(
+          title: const Text('Home', overflow: TextOverflow.ellipsis),
         ),
-        child: Text("YOUR TEXT YOUR TEXT YOUR TEXT YOUR TEXT YOUR TEXT YOUR TEXT YOUR TEXT YOUR TEXT YOUR TEXT YOUR TEXT YOUR TEXT YOUR TEXT ",
-        style: TextStyle(color: Colors.yellow, fontSize: 30),),
-      ),
+        body: Container(
+          color: Color(0xFFCCCCCC),
+          child: ListView(
+            children: <Widget>[
+
+            ],
+          ),
+        )
     );
   }
-
 }

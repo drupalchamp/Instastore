@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:instastore/pages/homePage.dart';
-import 'package:instastore/pages/paymentPage.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:flutter/services.dart';
-import 'package:instastore/pages/paypalPage.dart';
 
 class CODPaymentPage extends StatefulWidget {
   CODPaymentPage({Key key, this.title}) : super(key: key);
@@ -41,80 +39,6 @@ class _CODPaymentPageState extends State<CODPaymentPage> {
             fontSize: 25,
             color: Colors.black),
       ),
-    );
-  }
-
-  Widget _cardPayment() {
-    return Container(
-        width: 110,
-        height: 100,
-        padding: const EdgeInsets.all(3.0),
-        decoration:
-            BoxDecoration(border: Border.all(width: 3, color: Colors.grey)),
-        child: InkWell(
-          onTap: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => PaymentPage()));
-            //_onButtonPressed(context);
-          },
-          child: Container(
-            child: ClipRRect(
-              child: Image.asset('assets/card.jpg'),
-            ),
-          ),
-        ));
-  }
-
-  Widget _paypalPayment() {
-    return Container(
-        width: 110,
-        height: 100,
-        padding: const EdgeInsets.all(3.0),
-        decoration:
-            BoxDecoration(border: Border.all(width: 3, color: Colors.grey)),
-        child: InkWell(
-          onTap: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => PaypalPaymentPage()));
-            //_onButtonPressed(context);
-          },
-          child: Container(
-            child: ClipRRect(
-              child: Image.asset('assets/paypal.png'),
-            ),
-          ),
-        ));
-  }
-
-  Widget _codPayment() {
-    return Container(
-        width: 110,
-        height: 100,
-        padding: const EdgeInsets.all(3.0),
-        decoration: BoxDecoration(
-            border: Border.all(width: 3, color: Colors.greenAccent)),
-        child: InkWell(
-          onTap: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => CODPaymentPage()));
-            // _onButtonPressed(context);
-          },
-          child: Container(
-            child: ClipRRect(
-              child: Image.asset('assets/cod.jpg'),
-            ),
-          ),
-        ));
-  }
-
-  Widget _paymentMethod() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: <Widget>[
-        _cardPayment(),
-        _paypalPayment(),
-        _codPayment(),
-      ],
     );
   }
 
@@ -349,14 +273,14 @@ class _CODPaymentPageState extends State<CODPaymentPage> {
       child: Container(
         //width: 100,
         //padding: EdgeInsets.only(left: 5.0, top:15.0, right:5.0, bottom: 15.0),
-        padding: EdgeInsets.all(25.0),
+        padding: EdgeInsets.all(15.0),
         alignment: Alignment.center,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(5)),
             color: Colors.green),
         child: Text(
           'CONFIRM TO PAYMENT',
-          style: TextStyle(fontSize: 25, color: Colors.white),
+          style: TextStyle(fontSize: 12, color: Colors.white),
         ),
       ),
     );
@@ -365,25 +289,19 @@ class _CODPaymentPageState extends State<CODPaymentPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
+        /*appBar: AppBar(
           title: Text('Payment'),
           backgroundColor: Colors.green,
           brightness: Brightness.dark,
-        ),
+        ),*/
+
         body: SingleChildScrollView(
           padding: EdgeInsets.all(20),
           child: Column(
             children: <Widget>[
-              _paymentMethod(),
-              SizedBox(
-                height: 20,
+              Center(
+                child: Text('Use online payment as a preventive measure to control the spread of Coronavirus'),
               ),
-              _billingAddress(),
-              SizedBox(
-                height: 20,
-              ),
-              _userBillingDetails(),
-              _confirmToPayment(),
             ],
           ),
         ));

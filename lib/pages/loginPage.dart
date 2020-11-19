@@ -6,7 +6,7 @@ import 'package:instastore/pages/homePage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:instastore/services/api_services.dart';
 import 'package:instastore/src/Widget/bezierContainer.dart';
-import 'package:rflutter_alert/rflutter_alert.dart';
+//import 'package:rflutter_alert/rflutter_alert.dart';
 
 class LoginPage extends StatefulWidget {
   LoginPage({Key key, this.title}) : super(key: key);
@@ -21,21 +21,21 @@ class _LoginPageState extends State<LoginPage> {
   String _password;
 
   Widget _backButton() {
-    debugPrint('data: ${_username}');
-    debugPrint('data: ${_password}');
+    debugPrint('data: $_username');
+    debugPrint('data: $_password');
     return InkWell(
       onTap: () {
         Navigator.pop(context);
       },
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 10),
+        //padding: EdgeInsets.symmetric(horizontal: 10),
         child: Row(
           children: <Widget>[
-            Container(
+           /* Container(
               padding: EdgeInsets.only(left: 0, top: 10, bottom: 10),
               child: Icon(Icons.keyboard_arrow_left, color: Colors.black),
-            ),
-            Text('Back',
+            ),*/
+            Text('Login',
                 style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500))
           ],
         ),
@@ -51,7 +51,7 @@ class _LoginPageState extends State<LoginPage> {
         children: <Widget>[
           Text(
             title,
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
           ),
           SizedBox(
             height: 10,
@@ -92,14 +92,6 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  _onBasicAlertPressed(context) {
-    Alert(
-            context: context,
-            title: "Log in",
-            desc: "You have successfully logged in Instastore App.")
-        .show();
-  }
-
   Widget _submitButton() {
     return InkWell(
       onTap: _loginSubmit,
@@ -109,18 +101,18 @@ class _LoginPageState extends State<LoginPage> {
         alignment: Alignment.center,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(5)),
-            color: Colors.green),
+            color: Colors.grey),
         child: Text(
-          'Login',
-          style: TextStyle(fontSize: 20, color: Colors.white),
+          'Next',
+          style: TextStyle(fontSize: 12, color: Colors.white),
         ),
       ),
     );
   }
 
   void _loginSubmit() {
-    debugPrint('data: ${_username}');
-    debugPrint('data: ${_password}');
+    debugPrint('data: $_username');
+    debugPrint('data: $_password');
     if (_username == null ||
         _username.isEmpty ||
         _password == null ||
@@ -135,10 +127,10 @@ class _LoginPageState extends State<LoginPage> {
           fontSize: 16.0);
     } else {
       APIServices.getToken().then((token) {
-        debugPrint('token ${token}');
+        debugPrint('token $token');
         Map data = {'name': _username, 'pass': _password};
         APIServices.userLogin(token, data).then((response) {
-          debugPrint('value ${response}');
+          debugPrint('value $response');
           if (response != null) {
             Navigator.push(
                 context, MaterialPageRoute(builder: (context) => HomeScreen()));
@@ -287,89 +279,84 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
-        body: SingleChildScrollView(
+        appBar: AppBar(
+          backgroundColor: Colors.green,
+          title: Row(
+            children: <Widget>[
+              _backButton(),
+            ],
+          ),
+        ),
+        body: Container(
             key: _formKey,
             child: Container(
-              height: MediaQuery.of(context).size.height,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(5)),
-                  boxShadow: <BoxShadow>[
-                    BoxShadow(
-                        color: Colors.grey.shade200,
-                        offset: Offset(2, 4),
-                        blurRadius: 5,
-                        spreadRadius: 2)
-                  ],
-                  gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: [
-                        Color.fromRGBO(255, 255, 255, 1),
-                        Color.fromRGBO(38, 222, 26, 0.6)
-                      ])),
-              child: Stack(
-                children: <Widget>[
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 20),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Expanded(
-                          flex: 3,
-                          child: SizedBox(),
-                        ),
-                        _title(),
-                        SizedBox(
-                          height: 50,
-                        ),
-                        _emailPasswordWidget(),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        _submitButton(),
-                        Container(
-                          padding: EdgeInsets.symmetric(vertical: 10),
-                          alignment: Alignment.centerRight,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: <Widget>[
-                              InkWell(
-                                onTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              ForgotPasswordPage()));
-                                },
-                                child: Text('Forgot Password ?',
-                                    style: TextStyle(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w500)),
-                              )
-                            ],
+              padding: EdgeInsets.all(15.0),
+              //height: MediaQuery.of(context).size.height,
+              child: Card(
+                elevation: 5.0,
+                child: Stack(
+                  children: <Widget>[
+                    Container(
+                      padding: EdgeInsets.symmetric(horizontal: 20),
+                      margin: EdgeInsets.only(top: 20.0),
+                      child: Column(
+                       // crossAxisAlignment: CrossAxisAlignment.center,
+                       // mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                         /* Expanded(
+                            flex: 3,
+                            child: SizedBox(),
+                          ),*/
+                         // SizedBox(height: 20.0,),
+                          /*_title(),
+                          SizedBox(
+                            height: 50,
+                          ),*/
+                          _emailPasswordWidget(),
+                          SizedBox(
+                            height: 20,
                           ),
-                        ),
-                        _divider(),
-                        _facebookButton(),
-                        Expanded(
-                          flex: 2,
-                          child: SizedBox(),
-                        ),
-                      ],
+                          _submitButton(),
+                         /* Container(
+                            padding: EdgeInsets.symmetric(vertical: 10),
+                            alignment: Alignment.centerRight,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: <Widget>[
+                                InkWell(
+                                  onTap: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                ForgotPasswordPage()));
+                                  },
+                                  child: Text('Forgot Password ?',
+                                      style: TextStyle(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w500)),
+                                )
+                              ],
+                            ),
+                          ),*/
+                          // _divider(),
+                          // _facebookButton(),
+                        ],
+                      ),
                     ),
-                  ),
-                  Align(
-                    alignment: Alignment.bottomCenter,
-                    child: _createAccountLabel(),
-                  ),
-                  Positioned(top: 40, left: 0, child: _backButton()),
-                  Positioned(
-                      top: -MediaQuery.of(context).size.height * .15,
-                      right: -MediaQuery.of(context).size.width * .4,
-                      child: BezierContainer())
-                ],
+                    Align(
+                      alignment: Alignment.bottomCenter,
+                      child: _createAccountLabel(),
+                    ),
+                    //Positioned(top: 40, left: 0, child: _backButton()),
+                    Positioned(
+                        top: -MediaQuery.of(context).size.height * .15,
+                        right: -MediaQuery.of(context).size.width * .4,
+                        child: BezierContainer())
+                  ],
+                ),
               ),
             )));
   }

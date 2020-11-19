@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:instastore/src/Widget/nav-drawer.dart';
 
 class MyProfilePage extends StatelessWidget {
-  final String _fullName = "Kumar Ashutosh";
+  final String _fullName = "User Name";
   final String _points = "173";
   final String _myOrderItems = "24";
   final String _wishlistItems = "450";
@@ -28,7 +28,7 @@ class MyProfilePage extends StatelessWidget {
         height: 140.0,
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/kumar.jpg'),
+            image: AssetImage('assets/user.jpg'),
             fit: BoxFit.cover,
           ),
           borderRadius: BorderRadius.circular(80.0),
@@ -271,13 +271,13 @@ class MyProfilePage extends StatelessWidget {
                         height: 20.0,
                       ),
                       _buildStatContainer(),
-                      SizedBox(height: 20.0),
+                    /*  SizedBox(height: 20.0),
                       _billingAddress(),
                       SizedBox(height: 20.0),
                       _userBillingAddress(),
                       SizedBox(height:50.0),
                       _editButton(),
-                      SizedBox(height: 20.0),
+                      SizedBox(height: 20.0),*/
                     ],
                   ),
                 ),

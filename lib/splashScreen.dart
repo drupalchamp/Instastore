@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:instastore/pages/welcomePage.dart';
+import 'package:instastore/pages/homePage.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -24,6 +24,6 @@ class _SplashScreenState extends State<SplashScreen> {
     Timer(
         Duration(seconds: 5),
         () => Navigator.of(context).pushReplacement(MaterialPageRoute(
-            builder: (BuildContext context) => WelcomePage())));
+            builder: (BuildContext context) => HomeScreen())));
   }
 }

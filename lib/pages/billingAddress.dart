@@ -17,7 +17,7 @@ class _TestingPageState extends State<TestingPage> {
     return Scaffold(
         appBar: AppBar(
           title: Text('Testing Page'),
-          backgroundColor: Colors.green,
+          backgroundColor: Colors.blue,
           brightness: Brightness.dark,
         ),
         body: SingleChildScrollView(
@@ -25,7 +25,9 @@ class _TestingPageState extends State<TestingPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-
+Center(
+  child: Text('Use online payment as a preventive measure to control the spread of Coronavirus'),
+),
 
             ],
           ),
